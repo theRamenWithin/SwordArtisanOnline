@@ -24,6 +24,10 @@ body {
     background-attachment:fixed;
 }
 
+h2 {
+    text-align: center;
+}
+
 .navbar {
     background-color: #eae9ee;
 }
@@ -59,6 +63,18 @@ body {
     background-color: lightgoldenrodyellow;
 }
 
-h2 {
-    text-align: center;
+.listing-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.listing-image {
+    width: 1fr;
+    height: auto;
+    margin-right: 10px;
+}
+
+.listing-text {
+    width: 1fr;
+    height: auto;
 }
