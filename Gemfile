@@ -64,3 +64,5 @@ gem "jquery-rails", "~> 4.4"
 gem "rspec-rails", "~> 4.0"
 gem "better_errors", "~> 2.9"
 gem "binding_of_caller", "~> 0.8.0"
+
+gem "aws-sdk-s3", "~> 1.83"
