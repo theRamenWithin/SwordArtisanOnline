@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_035650) do
+ActiveRecord::Schema.define(version: 2020_11_09_224408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2020_11_09_035650) do
     t.string "country"
     t.string "phone"
     t.string "title", null: false
+    t.bigint "users_id"
+    t.index ["users_id"], name: "index_addresses_on_users_id"
   end
 
   create_table "listings", force: :cascade do |t|
@@ -85,13 +87,12 @@ ActiveRecord::Schema.define(version: 2020_11_09_035650) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.date "date_of_birth", null: false
-    t.bigint "address_id"
-    t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "users", column: "users_id"
   add_foreign_key "listings", "users"
   add_foreign_key "orders", "users"
 end
