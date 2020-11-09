@@ -1,27 +1,20 @@
-<p>
-  <strong>Title:</strong>
-  <%= @listing.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @listing.description %>
-</p>
-
-<p>
-  <strong>Condition:</strong>
-  <%= @listing.condition %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @listing.category %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @listing.price %>
-</p>
+<section class="listing-container">
+    <div class="listing-image">
+        <%= image_tag @listing.picture if @listing.picture.attached? %>
+    </div>
+    <div class="listing-text">
+    <strong>Title:</strong>
+    <%= @listing.title %><br>
+    <strong>Body:</strong>
+    <%= @listing.description %><br>
+    <strong>Condition:</strong>
+    <%= @listing.condition %><br>
+    <strong>Category:</strong>
+    <%= @listing.category %><br>
+    <strong>Price:</strong>
+    <%= @listing.price %>
+    </div>
+</section>
 
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
 <%= link_to 'Back', listings_path %>

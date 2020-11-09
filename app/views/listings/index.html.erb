@@ -3,7 +3,7 @@
 <section class="cards">
   <% @listings.reverse.each do |listing| %>
     <div class="card" style="width: 20rem;">
-      <img src="..." class="card-img-top" alt="...">
+      <%= image_tag listing.picture, class: "card-img-top", alt: "listing_picture" if listing.picture.attached? %>
       <div class="card-body">
         <h5 class="card-title"><%= listing.title %></h5>
         <p class="card-text"><%= listing.description %></p>
