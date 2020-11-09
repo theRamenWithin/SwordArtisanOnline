@@ -10,32 +10,35 @@
         <path d="M8 2.25c.909 0 3.188.685 4.254 1.022a.94.94 0 0 1 .656.773c.814 6.424-4.13 9.452-4.91 9.452V2.25z"/>
         </svg>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <% if !user_signed_in? %>
-                <li class="nav-item">
-                    <%= link_to "Sign Up", new_user_registration_path, method: :get, class: "nav-link" %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to "Log In", new_user_session_path, method: :get, class: "nav-link" %>
-                </li>
-            <% else %>
-                <li class="nav-item">
-                    <a class="nav-link">Welcome back <%= current_user.username %></a>
-                </li>
-                <li class="nav-item active">
+
+    <ul class="navbar-nav mr-auto">
+        <% if !user_signed_in? %>
+            <li class="nav-item active">
+                <%= link_to "Sign Up", new_user_registration_path, method: :get, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "Log In", new_user_session_path, method: :get, class: "nav-link" %>
+            </li>
+        <% else %>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Welcome back <%= current_user.username %>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <%= link_to "Profile", edit_user_registration_path, class: "nav-link" %>
-                </li>
-                <li class="nav-item active">
-                    <%= link_to 'Creat New Listing', new_listing_path, class: "nav-link" %>
-                </li>
-                <li class="nav-item">
+                    <%= link_to "My Orders", orders_path, class: "nav-link" %>
                     <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-                </li>
-            <% end %>
-        </ul>
-    </div>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
 </nav>
