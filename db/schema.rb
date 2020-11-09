@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_08_223837) do
+ActiveRecord::Schema.define(version: 2020_11_09_021534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,13 +18,13 @@ ActiveRecord::Schema.define(version: 2020_11_08_223837) do
   create_table "addresses", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "street", null: false
-    t.string "city", null: false
-    t.string "state", null: false
-    t.string "state_or_province", null: false
-    t.string "postal_code", null: false
-    t.string "country", null: false
-    t.string "phone", null: false
+    t.string "street"
+    t.string "city"
+    t.string "state_or_province"
+    t.string "postal_code"
+    t.string "country"
+    t.string "phone"
+    t.string "title", null: false
   end
 
   create_table "listings", force: :cascade do |t|
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_11_08_223837) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "title", null: false
     t.text "description", null: false
-    t.string "type", null: false
+    t.string "condition", null: false
     t.string "category", null: false
     t.decimal "price", null: false
     t.bigint "user_id", null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2020_11_08_223837) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.date "date_of_birth", null: false
-    t.bigint "address_id", null: false
+    t.bigint "address_id"
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -72,5 +72,4 @@ ActiveRecord::Schema.define(version: 2020_11_08_223837) do
 
   add_foreign_key "listings", "users"
   add_foreign_key "orders", "users"
-  add_foreign_key "users", "addresses"
 end
