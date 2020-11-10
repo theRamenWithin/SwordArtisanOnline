@@ -22,12 +22,11 @@
             <script>
                 document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
                     const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
-                    striple.redirectToCheckout({
+                    stripe.redirectToCheckout({
                         sessionId: "<%= @session_id %>"
                     });
                 });
             </script>
-
         <% end %>
 
         <% if user_signed_in? && current_user.id == @listing.user_id %>

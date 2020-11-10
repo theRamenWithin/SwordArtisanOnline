@@ -12,8 +12,8 @@
           <%= link_to 'Show', listing, class: "btn btn-info" %>
 
           <% if user_signed_in? && current_user.id == listing.user_id %>
-            <%= link_to 'Edit', edit_listing_path(listing), class: "btn btn-light" %>
-            <%= link_to 'Delete', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+              <%= link_to 'Edit', edit_listing_path(listing), class: "btn btn-light" %>
+              <%= link_to 'Delete', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           <% end %>
         </section>
         
