@@ -3,18 +3,36 @@
         <%= image_tag @listing.picture if @listing.picture.attached? %>
     </div>
     <div class="listing-text">
-    <strong>Title:</strong>
-    <%= @listing.title %><br>
-    <strong>Body:</strong>
-    <%= @listing.description %><br>
-    <strong>Condition:</strong>
-    <%= @listing.condition %><br>
-    <strong>Category:</strong>
-    <%= @listing.category %><br>
-    <strong>Price:</strong>
-    <%= @listing.price %>
+        <strong>Title:</strong>
+        <%= @listing.title %><br>
+        <strong>Body:</strong>
+        <%= @listing.description %><br>
+        <strong>Condition:</strong>
+        <%= @listing.condition %><br>
+        <strong>Category:</strong>
+        <%= @listing.category %><br>
+        <strong>Price (AUD):</strong>
+        <%= @listing.price %>
+
+        <% if user_signed_in? %>
+            <button data-stripe="payment", class="btn btn-primary">Buy Now</button>
+            
+            <script src="https://js.stripe.com/v3/"></script>
+
+            <script>
+                document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
+                    const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+                    striple.redirectToCheckout({
+                        sessionId: "<%= @session_id %>"
+                    });
+                });
+            </script>
+
+        <% end %>
+
+        <% if user_signed_in? && current_user.id == @listing.user_id %>
+            <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-light" %>
+            <%= link_to 'Delete', @listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        <% end %>
     </div>
 </section>
-
-<%= link_to 'Edit', edit_listing_path(@listing) %> |
-<%= link_to 'Back', listings_path %>
