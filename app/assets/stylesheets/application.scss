@@ -60,17 +60,13 @@ h2 {
 }
 
 .listing-container {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-column-gap: 10px;
 }
 
 .listing-image {
-    width: 1fr;
-    height: auto;
-    margin-right: 10px;
-}
-
-.listing-text {
-    width: 1fr;
-    height: auto;
+    img {
+        max-width: 100%;
+    }
 }
