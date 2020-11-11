@@ -69,3 +69,5 @@ gem "aws-sdk-s3", "~> 1.83"
 
 
 gem "cancancan", "~> 3.1"
+
+gem "omniauth-twitter", "~> 1.4"
