@@ -17,13 +17,15 @@
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :description %>
-    <%= f.input :condition, collection: ['new', 'like-new', 'used'] %>
-    <%= f.input :category %>
+    <%= f.input :condition, collection: ['New', 'Like-New', 'Used'] %>
+    <%= f.input :category, as: :check_boxes, collection: ['Practice', 'Blank', 'Replica', 'Cutting', 'Thrusting', 'Blunt', 'Protective'], wrapper: :custom_collection_inline %>
     <%= f.input :price %>
     <%= f.input :picture, as: :file, input_html: { accept: 'image/png, image/jpg, image/jpeg'} %>
   </div>
+  
+  <%= image_tag(@listing.picture, size: "200") if @listing.picture.attached? %><br>
 
   <%= f.button :submit, class: "btn-success" %>
   <%= f.button :button, "Reset", type: "reset", class: "btn-outline-secondary" %>
-  <%= link_to 'Back', listing_path, class: 'btn btn-warning'%>
+  <%= link_to 'Back', listings_path, class: 'btn btn-warning'%>
 <% end %>
