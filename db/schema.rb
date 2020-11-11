@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_224408) do
+ActiveRecord::Schema.define(version: 2020_11_11_003435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,22 +56,22 @@ ActiveRecord::Schema.define(version: 2020_11_09_224408) do
     t.string "title", null: false
     t.text "description", null: false
     t.string "condition", null: false
-    t.string "category", null: false
+    t.string "category", default: [], null: false, array: true
     t.decimal "price", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
-  create_table "listings_orders", id: false, force: :cascade do |t|
-    t.bigint "order_id", null: false
-    t.bigint "listing_id", null: false
-  end
-
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "purchase_date"
     t.bigint "user_id", null: false
+    t.string "title", null: false
+    t.string "description", null: false
+    t.string "condition", null: false
+    t.string "category", default: [], null: false, array: true
+    t.decimal "price", null: false
+    t.bigint "seller_id", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_224408) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.date "date_of_birth", null: false
+    t.boolean "admin?", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
