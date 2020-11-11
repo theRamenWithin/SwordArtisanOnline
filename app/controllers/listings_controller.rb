@@ -1,16 +1,13 @@
 class ListingsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_action :listing_params, only: [:create]
   before_action :authenticate_user!, except: [:index, :show]
 
-  # GET /listings
-  # GET /listings.json
   def index
     @listings = Listing.all
   end
 
-  # GET /listings/1
-  # GET /listings/1.json
   def show
     @listings = Listing.where(id: params[:ids])
 
@@ -19,7 +16,7 @@ class ListingsController < ApplicationController
       customer_email: current_user.email,
       line_items: [{
           name: @listing.title,
-          description: @listing.description,
+          description: "#{@listing.description[0..20]}...",
           images: [@listing.picture],
           amount: (@listing.price * 100).to_i,
           currency: 'aud',
@@ -30,23 +27,19 @@ class ListingsController < ApplicationController
               listing_id: @listing.id
           }
       },
-      success_url: "#{root_url}orders/success?listingId=#{@listing.id}",
+      success_url: "#{orders_success_url}?listingId=#{@listing.id}",
       cancel_url: "#{root_url}"
     )
     @session_id = session.id
   end
 
-  # GET /listings/new
   def new
     @listing = Listing.new
   end
 
-  # GET /listings/1/edit
   def edit
   end
 
-  # POST /listings
-  # POST /listings.json
   def create
     @listing = current_user.listings.create(listing_params)
 
@@ -61,8 +54,6 @@ class ListingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /listings/1
-  # PATCH/PUT /listings/1.json
   def update
     respond_to do |format|
       if @listing.update(listing_params)
@@ -75,8 +66,6 @@ class ListingsController < ApplicationController
     end
   end
 
-  # DELETE /listings/1
-  # DELETE /listings/1.json
   def destroy
     @listing.destroy
     respond_to do |format|
@@ -86,13 +75,11 @@ class ListingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_listing
       @listing = Listing.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def listing_params
-      params.require(:listing).permit(:title, :description, :condition, :category, :price, :picture)
+      params.require(:listing).permit(:title, :description, :condition, {:category => []}, :price, :picture)
     end
 end
