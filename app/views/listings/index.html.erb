@@ -2,7 +2,7 @@
 
 <section class="cards">
   <% @listings.reverse.each do |listing| %>
-    <div class="card" style="width: 20rem;">
+    <div class="card" id="listing-card">
       <%= image_tag listing.picture, class: "card-img-top", alt: "listing_picture" if listing.picture.attached? %>
       <div class="card-body">
         <h5 class="card-title"><%= listing.title %></h5>
@@ -11,7 +11,7 @@
         <section class="card-buttons">
           <%= link_to 'Show', listing, class: "btn btn-info" %>
 
-          <% if user_signed_in? && current_user.id == listing.user_id %>
+          <% if can? :manage, listing %>
               <%= link_to 'Edit', edit_listing_path(listing), class: "btn btn-light" %>
               <%= link_to 'Delete', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           <% end %>

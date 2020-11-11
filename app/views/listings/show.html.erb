@@ -10,11 +10,13 @@
         <strong>Condition:</strong>
         <%= @listing.condition %><br>
         <strong>Category:</strong>
-        <%= @listing.category %><br>
+        <% @listing.category[0..].each do |category| %>
+            <%= category %>
+        <% end %><br>
         <strong>Price (AUD):</strong>
         <%= @listing.price %>
 
-        <% if user_signed_in? %>
+        <% if user_signed_in? && @listing.user_id != current_user.id %>
             <button data-stripe="payment", class="btn btn-primary">Buy Now</button>
             
             <script src="https://js.stripe.com/v3/"></script>
