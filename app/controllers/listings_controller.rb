@@ -6,6 +6,12 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
+    @search = params["search"]
+    if @search.present?
+      @name = @search["name"]
+      @listings = Listing.where("title ILIKE ?", "%#{@name}%")
+      flash.alert = "Showing results for ... '#{@search[:name]}' "
+    end
   end
 
   def show
