@@ -28,12 +28,18 @@ h2 {
     text-align: center;
 }
 
+// .form-actions {
+//     display: inline;
+// }
+
 .navbar {
     background-color: #eae9ee;
 }
 
 .alert {
-    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
 }
 
 .container {

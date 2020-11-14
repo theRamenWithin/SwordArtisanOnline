@@ -1,22 +1,17 @@
-<!--
-<% if @current_user.addresses.length > 0 %>
+<%= simple_form_for @addresses do |f| %>
+  <%= f.error_notification %>
 
-  <%= simple_form_for @addresses do |f| %>
-    <%= f.error_notification %>
+  <div class="form-inputs">
+    <%= f.input :title, required: true, autofocus: true %>
+    <%= f.input :street, required: true, autofocus: true %>
+    <%= f.input :city, required: true, autofocus: true %>
+    <%= f.input :state_or_province, required: true, autofocus: true %>
+    <%= f.input :postal_code, required: true, autofocus: true %>
+    <%= f.input :country, required: true, autofocus: true %>
+    <%= f.input :phone, required: true, autofocus: true %>
+  </div>
 
-    <div class="form-inputs">
-      <%= f.input :title, required: true, autofocus: true %>
-      <%= f.input :street, required: true, autofocus: true %>
-      <%= f.input :city, required: true, autofocus: true %>
-      <%= f.input :state_or_province, required: true, autofocus: true %>
-      <%= f.input :postal_code, required: true, autofocus: true %>
-      <%= f.input :country, required: true, autofocus: true %>
-      <%= f.input :phone, required: true, autofocus: true %>
-    </div>
-
-    <div class="form-actions">
-      <button type="submit" class="btn btn-success">Update</button>
-    </div>
-  <% end %> 
-<% end %>
--->
+  <div class="form-actions">
+    <button type="submit" class="btn btn-success">Update</button>
+  </div>
+<% end %> 
