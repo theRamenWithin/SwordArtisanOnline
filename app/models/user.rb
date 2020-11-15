@@ -10,7 +10,6 @@ class User < ApplicationRecord
     user.first_name = auth.info.name.split[0]
     user.last_name = auth.info.name.split[1..].join(' ')
     user.username = auth.info.nickname
-    #user.image = auth.info.image # assuming the user model has an image
     # user.skip_confirmation!
     end
   end
