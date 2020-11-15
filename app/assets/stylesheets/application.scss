@@ -12,10 +12,12 @@
  *
  */
  @import "bootstrap";
+ @import 'bourbon';
+ @import 'base/base';
 
- html, body {
+html, body {
     height: 100%;
-  }
+}
 
 body {
     font-family: 'Roboto Condensed', sans-serif;
@@ -24,13 +26,13 @@ body {
     background-attachment:fixed;
 }
 
-h2 {
-    text-align: center;
-}
+// navbar
 
 .navbar {
     background-color: #eae9ee;
 }
+
+// alerts
 
 .alert {
     margin-left: auto;
@@ -38,12 +40,20 @@ h2 {
     width: 80%;
 }
 
+// main content
+
 .container {
     padding-top: 15px;
     padding-bottom: 15px;
     height: auto;
     background: white;
 }
+
+h2 {
+    text-align: center;
+}
+
+// listings
 
 .card-buttons {
     margin: 2px 0px;
@@ -70,3 +80,40 @@ h2 {
         max-width: 100%;
     }
 }
+
+// Chatroom
+
+.header {
+    background: rgba(0, 0, 0, .05);
+    border-radius: 3px;
+    margin: 0 0 1em;
+    padding: .5em;
+  }
+  
+  .chat {
+    height: 20em;
+    width: 100%;
+  }
+  
+  .messages {
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 3px;
+    height: 10em;
+    margin: 0 0 .5em;
+    overflow-y: scroll;
+    padding: .5em;
+  }
+  
+  .message {
+    .user {
+      font-weight: bold;
+  
+      &.me {
+        color: #b6191e;
+      }
+    }
+  }
+  
+  .other-links {
+    margin: .5em 0 0;
+  }

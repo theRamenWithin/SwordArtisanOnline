@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :listings
 
+  get 'chats/show'
+  resources :tokens, only: [:create]
+  
   get "orders/success", to: "orders#success"
   resources :orders
 

@@ -71,3 +71,9 @@ gem "aws-sdk-s3", "~> 1.83"
 gem "cancancan", "~> 3.1"
 
 gem "omniauth-twitter", "~> 1.4"
+
+gem "bourbon", "~> 7.0"
+
+gem "twilio-ruby", "~> 5.42"
+
+gem "securerandom", "~> 0.1.0"
