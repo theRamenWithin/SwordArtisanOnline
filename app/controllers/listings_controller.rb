@@ -17,26 +17,28 @@ class ListingsController < ApplicationController
   def show
     @listings = Listing.where(id: params[:ids])
 
-    session = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: current_user.email,
-      line_items: [{
-          name: @listing.title,
-          description: "#{@listing.description[0..20]}...",
-          images: [@listing.picture],
-          amount: (@listing.price * 100).to_i,
-          currency: 'aud',
-          quantity: 1,
-      }],
-      payment_intent_data: {
-          metadata: {
-              listing_id: @listing.id
-          }
-      },
-      success_url: "#{orders_success_url}?listingId=#{@listing.id}",
-      cancel_url: "#{root_url}"
-    )
-    @session_id = session.id
+    if user_signed_in?
+      session = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        customer_email: current_user.email,
+        line_items: [{
+            name: @listing.title,
+            description: "#{@listing.description[0..20]}...",
+            images: [@listing.picture],
+            amount: (@listing.price * 100).to_i,
+            currency: 'aud',
+            quantity: 1,
+        }],
+        payment_intent_data: {
+            metadata: {
+                listing_id: @listing.id
+            }
+        },
+        success_url: "#{orders_success_url}?listingId=#{@listing.id}",
+        cancel_url: "#{root_url}"
+      )
+      @session_id = session.id
+    end
   end
 
   def new
