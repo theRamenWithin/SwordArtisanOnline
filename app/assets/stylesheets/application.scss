@@ -23,21 +23,13 @@ body {
     font-family: 'Roboto Condensed', sans-serif;
     background: rgb(65,34,195);
     background: linear-gradient(0deg, rgba(65,34,195,1) 0%, rgba(45,173,253,1) 100%);
-    background-attachment:fixed;
+    background-attachment: fixed;
 }
 
 // navbar
 
 .navbar {
     background-color: #eae9ee;
-}
-
-// alerts
-
-.alert {
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
 }
 
 // main content
@@ -56,18 +48,18 @@ h2 {
 // listings
 
 .card-buttons {
-    margin: 2px 0px;
-}
-
-.cards {
+    margin: 5px;
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
-#listing-card {
-    width: 25em;
+.card-img-top-sec {
+  max-height: 10em;
+  overflow: hidden;
 }
+
+// listing
 
 .listing-container {
     display: grid;
@@ -81,7 +73,7 @@ h2 {
     }
 }
 
-// Chatroom
+// chatroom
 
 .header {
     background: rgba(0, 0, 0, .05);
