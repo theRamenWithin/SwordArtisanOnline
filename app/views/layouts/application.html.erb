@@ -17,18 +17,18 @@
   <body>
     <%= render "partials/navbar.html.erb" %>
 
-    <% unless alert.nil? %>
-      <div class="alert alert-warning role="alert">
-        <%= alert %>
-      </div>
-    <% end %>
-    <% unless notice.nil? %>
-      <div class="alert alert-success"" role="alert">
-        <%= notice %>
-      </div>
-    <% end %>
-
     <div class="container">
+      <% unless alert.nil? %>
+        <div class="alert alert-warning role="alert">
+          <%= alert %>
+        </div>
+      <% end %>
+      <% unless notice.nil? %>
+        <div class="alert alert-success"" role="alert">
+          <%= notice %>
+        </div>
+      <% end %>
+      
       <%= yield %>
     </div>
 
