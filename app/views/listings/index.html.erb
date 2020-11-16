@@ -1,25 +1,39 @@
-<h1>Listings</h1>
+<h1>Listings <%= link_to 'Create New Listing', new_listing_path, class: "btn btn-primary" %></h1>
 
-<section class="cards">
+
+<div class="row row-cols-1 row-cols-md-3">
   <% @listings.reverse.each do |listing| %>
-    <div class="card" id="listing-card">
-      <%= image_tag listing.picture, class: "card-img-top", alt: "listing_picture" if listing.picture.attached? %>
-      <div class="card-body">
-        <h5 class="card-title"><%= listing.title %></h5>
-        <p class="card-text"><%= listing.description %></p>
+    <div class="col mb-4">
+      <div class="card border-dark mb-3">
 
-        <section class="card-buttons">
-          <%= link_to 'Show', listing, class: "btn btn-info" %>
-
-          <% if can? :manage, listing %>
-              <%= link_to 'Edit', edit_listing_path(listing), class: "btn btn-light" %>
-              <%= link_to 'Delete', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-          <% end %>
+        <section class="card-img-top-sec">
+          <%= image_tag listing.picture, class: "card-img-top", alt: "listing_picture" if listing.picture.attached? %>
         </section>
-        
+
+        <div class="card-header">
+          <h5 class="card-title"><%= listing.title %>
+            <% if listing.created_at.to_date == Date.today.to_s.to_date %>
+              <span class="badge badge-secondary">New</span>
+            <% end %>
+          </h5>
+        </div>
+
+        <div class="card-body">
+          <p class="card-text"><%= listing.description %></p>
+        </div>
+
+        <div class="card-footer">
+          <section class="card-buttons">
+            <%= link_to 'Show', listing, class: "btn btn-info" %>
+            <% if can? :manage, listing %>
+              <%= link_to 'Edit', edit_listing_path(listing), class: "btn btn-secondary" %>
+              <%= link_to 'Delete', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+            <% end %>
+          </section>
+          <small class="text-muted">Created at <%= listing.created_at %></small>
+        </div>
+
       </div>
     </div>
   <% end %>
-</section>
-
-<%= link_to 'New Listing', new_listing_path %>
+</div>
