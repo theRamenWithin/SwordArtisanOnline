@@ -18,7 +18,7 @@ category2 = ['Cutting', 'Thrusting', 'Blunt']
     user.date_of_birth = Faker::Date.between(from: '1930-01-01', to: '2020-01-01')
     user.password = "password"
     user.password_confirmation = "password"
-    user.username = Faker::String.name
+    user.username = Faker::Twitter.screen_name
     user.save
 
     1.times do
@@ -29,8 +29,7 @@ category2 = ['Cutting', 'Thrusting', 'Blunt']
         listing.category = [category1[rand(0..2)], category2[rand(0..2)]]
         listing.price = Faker::Number.decimal(l_digits: 3, r_digits: 2)
         listing.user_id = user.id
-        # downloaded_image = URI.open("#{Faker::LoremFlickr.colorized_image(size: "500x600", search_terms: ['sword'])}")
-        # listing.picture.attach(io: downloaded_image, filename: "#{Faker::Number.within(range: 1..999999)}.jpg")
+        listing.picture.attach(io: URI.open("#{Faker::LoremFlickr.image(size: "#{Faker::Number.within(range: 400..600)}x#{Faker::Number.within(range: 400..600)}", search_terms: ['sword'])}"), filename: "#{Faker::Number.within(range: 1..999999)}.jpg", content_type: 'image/jpg')
         listing.save
     end 
 
@@ -43,8 +42,6 @@ category2 = ['Cutting', 'Thrusting', 'Blunt']
         order.price = Faker::Number.decimal(l_digits: 3, r_digits: 2) #=> 11.88
         order.user_id = user.id
         order.seller_id = Faker::Number.within(range: 1..10)
-        # downloaded_image = URI.open("#{Faker::LoremFlickr.colorized_image(size: "500x600", search_terms: ['sword'])}")
-        # order.picture.attach(io: downloaded_image, filename: "#{Faker::Number.within(range: 1..999999)}.jpg")
         order.save
     end
 
