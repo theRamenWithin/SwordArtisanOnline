@@ -30,6 +30,7 @@ body {
 
 .navbar {
     background-color: #eae9ee;
+    border-bottom: 1px solid black;
 }
 
 // main content
@@ -70,6 +71,8 @@ h2 {
 .listing-image {
     img {
         max-width: 100%;
+        border-radius: 25px;
+        border: 1px solid black;
     }
 }
 
