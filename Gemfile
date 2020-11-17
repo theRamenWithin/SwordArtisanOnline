@@ -67,7 +67,6 @@ gem "binding_of_caller", "~> 0.8.0"
 
 gem "aws-sdk-s3", "~> 1.83"
 
-
 gem "cancancan", "~> 3.1"
 
 gem "omniauth-twitter", "~> 1.4"
