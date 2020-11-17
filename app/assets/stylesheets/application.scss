@@ -15,14 +15,20 @@
  @import 'bourbon';
  @import 'base/base';
 
-html, body {
-    height: 100%;
+html {
+  height: 100%;
+  background: linear-gradient(0deg, rgba(65,34,195,1) 0%, rgba(45,173,253,1) 100%);
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 body {
+    height: 100%;
     font-family: 'Roboto Condensed', sans-serif;
-    background: rgb(65,34,195);
     background: linear-gradient(0deg, rgba(65,34,195,1) 0%, rgba(45,173,253,1) 100%);
+    margin: 0;
+    background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
