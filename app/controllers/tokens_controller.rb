@@ -1,4 +1,5 @@
 class TokensController < ApplicationController
+    # If the user is signed in, this creates a token to be used with the Twilio app to pass to Programmable Chat and setup a chatroom.
     def create
         if user_signed_in?
             # Define User Identity

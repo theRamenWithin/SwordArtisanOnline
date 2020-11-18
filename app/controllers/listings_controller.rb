@@ -1,9 +1,15 @@
 class ListingsController < ApplicationController
+  # Initializes CanCanCan functionality for authorization
   load_and_authorize_resource
+  # Set what @listing is before these functions
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  # Accept these parameters for create
   before_action :listing_params, only: [:create]
+  # Use Devise to require that a user be logged in except for these functions.
   before_action :authenticate_user!, except: [:index, :show]
 
+  # The index page contains all listing. 
+  # If something has been entered into the search field, return listings that match the SQL LIKE query and then flash an alert.
   def index
     @listings = Listing.all
     @search = params["search"]
@@ -14,6 +20,8 @@ class ListingsController < ApplicationController
     end
   end
 
+  # For showing individual listings.
+  # If the user is signed in, create a token for stripe to allow a purchase.
   def show
     @listings = Listing.where(id: params[:ids])
 
@@ -41,6 +49,7 @@ class ListingsController < ApplicationController
     end
   end
 
+  # Creates a template for a new listing
   def new
     @listing = Listing.new
   end
@@ -48,6 +57,7 @@ class ListingsController < ApplicationController
   def edit
   end
 
+  # Create a listing accepting the listing parameters only.
   def create
     @listing = current_user.listings.create(listing_params)
 
@@ -62,6 +72,7 @@ class ListingsController < ApplicationController
     end
   end
 
+  # Updates a listing accepting the listing parameters.
   def update
     respond_to do |format|
       if @listing.update(listing_params)
@@ -74,6 +85,7 @@ class ListingsController < ApplicationController
     end
   end
 
+  # Destroys a listing
   def destroy
     @listing.destroy
     respond_to do |format|

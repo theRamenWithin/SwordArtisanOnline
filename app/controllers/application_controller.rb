@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
     protected
    
+    # Implementation of strong params for allowing a user to create an account
     def configure_permitted_parameters
         devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:username, :first_name, :last_name, :date_of_birth, :email, :password, :password_confirmation)}
     end
