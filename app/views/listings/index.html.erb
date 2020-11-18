@@ -1,5 +1,10 @@
-<h1>Listings <%= link_to 'Create New Listing', new_listing_path, class: "btn btn-primary" %></h1>
+<div class="jumbotron">
+  <h1 class="display-4">Sword Artisan Online</h1>
+  <hr class="my-4">
+  <h2>Buy & Sell your Historical European Martial Arts equipment!</h2>
+</div>
 
+<h1>Listings <%= link_to 'Create New Listing', new_listing_path, class: "btn btn-primary" %></h1>
 
 <div class="row row-cols-1 row-cols-md-3">
   <% @listings.reverse.each do |listing| %>
