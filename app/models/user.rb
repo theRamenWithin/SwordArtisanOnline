@@ -10,7 +10,6 @@ class User < ApplicationRecord
     user.first_name = auth.info.name.split[0]
     user.last_name = auth.info.name.split[1..].join(' ')
     user.username = auth.info.nickname
-    # user.skip_confirmation!
     end
   end
 
@@ -21,4 +20,11 @@ class User < ApplicationRecord
   has_many :addresses, dependent: :destroy
   has_many :orders
   has_many :listings
+
+  validates :username, length: { in: 3..20 }, presence: true, uniqueness: true
+  validates :first_name, length: { maximum: 50 }, presence: true
+  validates :last_name, length: { maximum: 50 }, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :date_of_birth, presence: true
+  
 end
